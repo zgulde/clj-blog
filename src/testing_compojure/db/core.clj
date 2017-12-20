@@ -22,3 +22,4 @@
 (defn where [& args] (str "WHERE " (clojure.string/join " " args)))
 (defn limit [n] (str "LIMIT " n))
 (defn offset [n] (str "OFFSET " n))
+
