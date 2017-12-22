@@ -5,8 +5,9 @@
   (html
     [:div {:class "article col-md-6"}
      [:h2 {:class "text-center"} title]
-     [:ul (for [tag tags]
-              [:li tag])]
+     (when (seq tags)
+       [:ul (for [tag tags]
+              [:li tag])])
      [:p content]]))
 
 (defn render-all [] )
