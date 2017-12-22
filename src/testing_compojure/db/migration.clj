@@ -32,5 +32,3 @@
   (println "Running migrations...")
   (migrate)
   (println "Finished running migrations!"))
-
-(migrate)

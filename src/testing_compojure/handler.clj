@@ -46,22 +46,9 @@
 (defroutes markdown-routes
   (GET "/:file" [file] (show-markdown file)))
 
-(defroutes scratch-routes
-  (GET "/test" [& args]
-       (do
-         (println "[scratch-routes#/test] args are below:")
-         (println "[scratch-routes#/test]" args)
-         "ok"))
-  ; (GET "/test" [& args]
-  ;      (do
-  ;        (println args)
-  ;        ("ok")))
-  )
-
 (def app
   (-> (routes home-routes
               post-routes
-              scratch-routes
               markdown-routes
               app-routes)
       (handler/site)

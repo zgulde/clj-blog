@@ -23,3 +23,18 @@
 (defn limit [n] (str "LIMIT " n))
 (defn offset [n] (str "OFFSET " n))
 
+(def table-name "some_table")
+
+; (-> (query table-name)
+;     (select "foo" "bar")
+;     (where "baz > 3")
+;     (orderby "foo desc")
+;     (run))
+
+; (-> (query table-name)
+;     (select "foo" "bar")
+;     (join "table2" "t.id" "t2.t_id")
+;     (join "table3" "t.id" "t3.t_id")
+;     (where "baz > 3")
+;     (orderby "foo desc")
+;     (fst))

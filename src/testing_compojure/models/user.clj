@@ -9,6 +9,11 @@
 (defn create [user]
   (jdbc/insert! db/blog-db :users user))
 
+(defn fst []
+  (first (db/query [(db/select "*")
+              (db/from "users")
+              (db/limit "1")])))
+
 (defn seed []
   (doseq [email ["zach@codeup.com" "ryan@codeup.com"
                  "luis@codeup.com" "fernando@codeup.com"

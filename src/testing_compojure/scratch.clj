@@ -42,3 +42,20 @@
                                   ""
                                   "[^1]: With some exceptions"])
                      :heading-anchors true :footnotes? true)
+
+(into [] (filter even?) (range 1 11))
+
+(def people
+  [{:name "one" :sales 1}
+   {:name "two" :sales 2}
+   {:name "three" :sales 1}
+   {:name "four" :sales 2}
+   {:name "five" :sales 3}
+   {:name "six" :sales 2}
+   {:name "seven" :sales 2}])
+
+(defn reduce-by [group-by-f reducer-f coll]
+  (reduce-kv (fn [m k v] (assoc m k (reducer-f v)))
+             {} (group-by group-by-f people)))
+
+(reduce-by :sales #(map :name %) people)
