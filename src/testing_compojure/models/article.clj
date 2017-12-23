@@ -19,6 +19,8 @@
     (doseq [[title body] articles]
       (create {:title title :body body :user_id user-id}))))
 
+(query [(select "*") (from "users")])
+
 ; (query
 ;   [(select "*")
 ;    (from "articles a")
