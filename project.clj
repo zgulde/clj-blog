@@ -10,6 +10,7 @@
                  [mysql/mysql-connector-java "6.0.5"]
                  [org.clojure/java.jdbc "0.7.3"]
                  [markdown-clj "1.0.1"]]
+  :main testing-compojure.core
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler testing-compojure.handler/app
          :init testing-compojure.handler/init
@@ -20,4 +21,7 @@
    {:ring
     {:open-browser? false, :stacktraces? false, :auto-reload? false}}
    :dev
-   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.5.1"]]}})
+   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.5.1"]]}}
+  :aliases {"migrate" ["run" "db:migrate"]
+            "seed" ["run" "db:seed"]
+            "refresh" ["run" "db:refresh"]})
