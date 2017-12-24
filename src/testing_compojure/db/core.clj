@@ -1,5 +1,5 @@
 (ns testing-compojure.db.core
-  (:require [clojure.java.jdbc :as j]
+  (:require [clojure.java.jdbc :as jdbc]
             [defun.core :refer [defun]]
             [clojure.string :as s]))
 
@@ -13,14 +13,27 @@
         args (if params
                (apply conj [sql] params)
                [sql])]
-    (j/query blog-db args)))
+    (jdbc/query blog-db args)))
 
-(defn from [table] {:from (name table)})
+(defn from [table] {:from (if (vector? table)
+                            (s/join " " (map name table))
+                            (name table))})
 
-(defn select [q & args] (update q :select #(apply concat % [(map name args)])))
+(defn select [q & args]
+  (update q :select
+          (fn [current-selects]
+            (apply concat current-selects
+                   [(->> args
+                         (map (fn [part] (if (vector? part)
+                                           (s/join " " (map name part))
+                                           part)))
+                         (map name))]))))
 
 (defn join [q table rel1 rel2]
-  (update q :join #(concat % [(map name [table rel1 rel2])])))
+  (let [table (if (vector? table) (s/join " " (map name table)) table)]
+    (update q :join
+            (fn [current-joins]
+              (concat current-joins [(map name [table rel1 rel2])])))))
 
 (defn where [q & args]
   (let [param (last args)
@@ -57,3 +70,12 @@
   parameters, suitable for passing to clojure.java.jdbc/query"
   [q]
   (apply conj [(s/join " " (build-query-parts q))] (:params q)))
+
+(defn run [q]
+  (jdbc/query blog-db (->query q)))
+
+(defn fst [q]
+  (-> q
+      (limit 1)
+      (run)
+      (first)))
