@@ -71,10 +71,11 @@
   [q]
   (apply conj [(s/join " " (build-query-parts q))] (:params q)))
 
-(defn run [q]
+(defn run "Transform the query map and return the results of jdbc/query"
+  [q]
   (jdbc/query blog-db (->query q)))
 
-(defn fst [q]
+(defn fst "Apply a limit of 1 and return the first result" [q]
   (-> q
       (limit 1)
       (run)
