@@ -2,25 +2,21 @@
   (:require [clojure.java.jdbc :as jdbc]
             [testing-compojure.db.core :as db]))
 
-; FIXME: Everything is turned off until it can be rewritten with the refactored
-; query-builder
-
-; (defn find-all []
-;   (db/query [(db/select "*")
-;              (db/from "users")]))
+(defn find-all []
+  (-> (db/from :users)
+      (db/select :*)
+      (db/run)))
 
 (defn create [user]
   (jdbc/insert! db/blog-db :users user))
 
-; (defn fst []
-;   (first (db/query [(db/select "*")
-;               (db/from "users")
-;               (db/limit "1")])))
+(defn fst []
+  (-> (db/from :users)
+      (db/select :*)
+      (db/fst)))
 
-; (defn seed []
-;   (doseq [email ["zach@codeup.com" "ryan@codeup.com"
-;                  "luis@codeup.com" "fernando@codeup.com"
-;                  "justin@codeup.com"]]
-;     (create {:email email})))
-
-(defn seed [] nil)
+(defn seed []
+  (doseq [email ["zach@codeup.com" "ryan@codeup.com"
+                 "luis@codeup.com" "fernando@codeup.com"
+                 "justin@codeup.com"]]
+    (create {:email email})))

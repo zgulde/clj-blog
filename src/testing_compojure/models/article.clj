@@ -1,36 +1,27 @@
 (ns testing-compojure.models.article
   (:require [clojure.java.jdbc :as jdbc]
-            [testing-compojure.db.core :refer :all]
+            [testing-compojure.db.core :as db]
             [testing-compojure.models.user :as user]))
 
-; FIXME: Everything is turned off until it can be rewritten with the refactored
-; query-builder
+(def with-users
+  (-> (db/from [:articles :a])
+      (db/join [:users :u] :a.user_id :u.id)
+      (db/select :a.title :a.body :u.email)))
 
-; (defn find-all []
-;   (query [(select "*")
-;              (from "articles")]))
+(defn find-all []
+  (db/run with-users))
 
-; (defn create [article]
-;   (jdbc/insert! blog-db :articles article))
+(defn fst []
+  (db/fst with-users))
 
-; (defn seed []
-;   (let [articles [["title 1" "here is some text content"]
-;                   ["title 2" "and some more text content"]
-;                   ["title 3" "so much more content..."]]
-;         user (user/fst)
-;         user-id (:id user)]
-;     (doseq [[title body] articles]
-;       (create {:title title :body body :user_id user-id}))))
+(defn create [article]
+  (jdbc/insert! db/blog-db :articles article))
 
-(defn seed [] nil)
-
-; (query
-;   [(select "*")
-;    (from "articles a")
-;    (join "users u" "a.user_id" "u.id")])
-
-; (query
-;   [(select "*")
-;    (from "users u")
-;    (join "articles a" "a.user_id" "u.id")
-;    (where "u.id = 1")])
+(defn seed []
+  (let [articles [["title 1" "here is some text content"]
+                  ["title 2" "and some more text content"]
+                  ["title 3" "so much more content..."]]
+        user (user/fst)
+        user-id (:id user)]
+    (doseq [[title body] articles]
+      (create {:title title :body body :user_id user-id}))))
