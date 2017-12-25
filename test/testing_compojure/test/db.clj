@@ -6,7 +6,9 @@
 
   (testing "(from)"
     (is (= {:from "foo"}
-           (from :foo))))
+           (from :foo)))
+    (is (= {:from "table t"}
+           (from [:table :t]))))
 
   (testing "(select)"
     (is (= {:select ["*"] :from "foo"}
@@ -76,6 +78,7 @@
       (is (= 5 (:offset q)))))
 
   (testing "(->query)"
+    ;;
     (let [parameter "a value"
           q (-> (from :foo)
                 (select :bar :baz)
@@ -85,16 +88,18 @@
           sql "SELECT bar, baz FROM foo WHERE some_col = ? LIMIT 15 OFFSET 3"]
       (is (= [sql parameter]
              (->query q))))
-    (let [q (-> (from :atable)
-                (select :col_one "col_two as two")
-                (join "anothertable at" :at.atable_id :atable.id)
+    ;;
+    (let [q (-> (from [:atable :a])
+                (select :col_one [:col_two :two])
+                (join [:anothertable :at] :at.atable_id :a.id)
                 (join :foo :at.foo_id :foo.id))
-          sql (str "SELECT col_one, col_two as two "
-                   "FROM atable "
-                   "JOIN anothertable at ON at.atable_id = atable.id "
+          sql (str "SELECT col_one, col_two two "
+                   "FROM atable a "
+                   "JOIN anothertable at ON at.atable_id = a.id "
                    "JOIN foo ON at.foo_id = foo.id")
           query (->query q)]
       (is (= [sql] query)))
+    ;;
     (let [q (-> (from :table)
                 (select :one)
                 (groupby :foo :bar)
@@ -102,5 +107,5 @@
           query (->query q)
           sql "SELECT one FROM table GROUP BY foo, bar ORDER BY baz, pony"]
       (is (= [sql] query))))
-
-  )
+;;
+)
