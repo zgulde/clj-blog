@@ -1,19 +1,33 @@
 # clj-blog
 
-FIXME
+Yet another blog application, written for me to practice clojure.
 
 ## Prerequisites
 
-You will need [Leiningen][1] 1.7.0 or above installed.
+You will need [Leiningen][1] 1.7.0 or above installed. You can run
+
+    lein deps
+
+to have leiningen pull in the dependencies for you, or just run one of the
+commands below and leiningen will figure out that it needs to go get the
+dependencies.
 
 [1]: https://github.com/technomancy/leiningen
 
 ## Running
 
+Run the tests:
+
+    lein test
+
 To start a web server for the application, run:
 
     lein ring server
 
-## License
+To handle database things
 
-Copyright © 2017 FIXME
+    lein run db:migrate # drop tables if they exist, re-create them
+    lein run db:seed
+
+    lein run db:refresh # combination of the two above
+
