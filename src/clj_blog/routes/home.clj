@@ -1,6 +1,6 @@
-(ns testing-compojure.routes.home
+(ns clj-blog.routes.home
   (:require [compojure.core :refer :all]
-            [testing-compojure.views.layout :as layout]))
+            [clj-blog.views.layout :as layout]))
 
 (defn home []
   (layout/master "Home Page"

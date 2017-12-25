@@ -1,5 +1,5 @@
-(ns testing-compojure.repl
-  (:use testing-compojure.handler
+(ns clj-blog.repl
+  (:use clj-blog.handler
         ring.server.standalone
         [ring.middleware file-info file]))
 

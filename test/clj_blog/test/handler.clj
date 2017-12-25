@@ -1,7 +1,7 @@
-(ns testing-compojure.test.handler
+(ns clj-blog.test.handler
   (:use clojure.test
         ring.mock.request
-        testing-compojure.handler))
+        clj-blog.handler))
 
 (deftest test-app
   (testing "main route"

@@ -1,7 +1,7 @@
-(ns testing-compojure.models.article
+(ns clj-blog.models.article
   (:require [clojure.java.jdbc :as jdbc]
-            [testing-compojure.db.core :as db]
-            [testing-compojure.models.user :as user]))
+            [clj-blog.db.core :as db]
+            [clj-blog.models.user :as user]))
 
 (def with-users
   (-> (db/from [:articles :a])

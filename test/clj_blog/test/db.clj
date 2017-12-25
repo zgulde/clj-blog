@@ -1,6 +1,6 @@
-(ns testing-compojure.test.db
+(ns clj-blog.test.db
   (:use clojure.test
-        testing-compojure.db.core))
+        clj-blog.db.core))
 
 (deftest query-builder-test
 

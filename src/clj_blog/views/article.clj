@@ -1,4 +1,4 @@
-(ns testing-compojure.views.article
+(ns clj-blog.views.article
   (:require [hiccup.core :refer [html]]
             [clojure.string :refer [join]]))
 

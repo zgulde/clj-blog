@@ -1,4 +1,4 @@
-(ns testing-compojure.scratch
+(ns clj-blog.scratch
   (:require [defun.core :refer [defun]]
             [markdown.core :as m]
             [clojure.java.io :as io]))

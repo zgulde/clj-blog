@@ -1,6 +1,6 @@
-(ns testing-compojure.db.seeder
-  (:require [testing-compojure.models.user :as user]
-            [testing-compojure.models.article :as article]
+(ns clj-blog.db.seeder
+  (:require [clj-blog.models.user :as user]
+            [clj-blog.models.article :as article]
             [clojure.java.jdbc :as jdbc]))
 
 (def blog-db {:dbtype "mysql"

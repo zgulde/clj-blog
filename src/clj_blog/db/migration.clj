@@ -1,4 +1,4 @@
-(ns testing-compojure.db.migration
+(ns clj-blog.db.migration
   (:require [clojure.java.jdbc :as jdbc]))
 
 (def blog-db {:dbtype "mysql"

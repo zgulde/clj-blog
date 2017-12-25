@@ -1,4 +1,4 @@
-(defproject testing-compojure "0.1.0-SNAPSHOT"
+(defproject clj-blog "0.0.1"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -10,11 +10,11 @@
                  [mysql/mysql-connector-java "6.0.5"]
                  [org.clojure/java.jdbc "0.7.3"]
                  [markdown-clj "1.0.1"]]
-  :main testing-compojure.core
+  :main clj-blog.core
   :plugins [[lein-ring "0.8.12"]]
-  :ring {:handler testing-compojure.handler/app
-         :init testing-compojure.handler/init
-         :destroy testing-compojure.handler/destroy}
+  :ring {:handler clj-blog.handler/app
+         :init clj-blog.handler/init
+         :destroy clj-blog.handler/destroy}
   :profiles
   {:uberjar {:aot :all}
    :production

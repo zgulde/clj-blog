@@ -1,4 +1,4 @@
-(ns testing-compojure.views.layout
+(ns clj-blog.views.layout
   (:require [hiccup.page :refer [html5 include-css]]))
 
 (defn master [title & body]

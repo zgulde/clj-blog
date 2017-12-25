@@ -1,4 +1,4 @@
-(ns testing-compojure.db.core
+(ns clj-blog.db.core
   (:require [clojure.java.jdbc :as jdbc]
             [defun.core :refer [defun]]
             [clojure.string :as s]))

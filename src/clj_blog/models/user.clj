@@ -1,6 +1,6 @@
-(ns testing-compojure.models.user
+(ns clj-blog.models.user
   (:require [clojure.java.jdbc :as jdbc]
-            [testing-compojure.db.core :as db]))
+            [clj-blog.db.core :as db]))
 
 (defn find-all []
   (-> (db/from :users)

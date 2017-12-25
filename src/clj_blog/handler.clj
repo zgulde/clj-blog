@@ -1,4 +1,4 @@
-(ns testing-compojure.handler
+(ns clj-blog.handler
   (:require [compojure.core :refer [defroutes routes GET]]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.file-info :refer [wrap-file-info]]
@@ -8,14 +8,14 @@
             [compojure.route :as route]
             [clojure.java.io :as io]
             [markdown.core :as md]
-            [testing-compojure.routes.home :refer [home-routes]]
-            [testing-compojure.views.layout :as layout]))
+            [clj-blog.routes.home :refer [home-routes]]
+            [clj-blog.views.layout :as layout]))
 
 (defn init []
-  (println "testing-compojure is starting"))
+  (println "clj-blog is starting"))
 
 (defn destroy []
-  (println "testing-compojure is shutting down"))
+  (println "clj-blog is shutting down"))
 
 (defn show-404 []
   (layout/master

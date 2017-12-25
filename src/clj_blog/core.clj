@@ -1,6 +1,6 @@
-(ns testing-compojure.core
-  (:require [testing-compojure.db.migration :refer [migrate]]
-            [testing-compojure.db.seeder :refer [seed]])
+(ns clj-blog.core
+  (:require [clj-blog.db.migration :refer [migrate]]
+            [clj-blog.db.seeder :refer [seed]])
   (:gen-class))
 
 (def logo

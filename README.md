@@ -1,4 +1,4 @@
-# testing-compojure
+# clj-blog
 
 FIXME
 

@@ -1,6 +1,6 @@
-(ns testing-compojure.test.views.article
+(ns clj-blog.test.views.article
   (:use clojure.test
-        testing-compojure.views.article))
+        clj-blog.views.article))
 
 (deftest test-article-views
 
