@@ -1,4 +1,4 @@
-(ns clj-blog.test.db
+(ns clj-blog.test.query-builder
   (:use clojure.test
         clj-blog.db.core))
 

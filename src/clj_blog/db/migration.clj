@@ -16,7 +16,7 @@
   (jdbc/create-table-ddl :articles
     [[:id :integer :unsigned :not :null :auto_increment]
      [:title "varchar(255)" :not :null]
-     [:body :text :not :null]
+     [:content :text :not :null]
      [:user_id :integer :unsigned :not :null]
      [:primary :key "(id)"]
      [:foreign :key "(user_id)" :references "users (id)"]]))

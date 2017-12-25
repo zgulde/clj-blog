@@ -9,7 +9,9 @@
             [clojure.java.io :as io]
             [markdown.core :as md]
             [clj-blog.routes.home :refer [home-routes]]
-            [clj-blog.views.layout :as layout]))
+            [clj-blog.views.layout :as layout]
+            [clj-blog.views.article :as article-views]
+            [clj-blog.models.article :as article-model]))
 
 (defn init []
   (println "clj-blog is starting"))
@@ -23,8 +25,9 @@
     [:p "Try going elsewhere!"]))
 
 (defn show-posts []
-  (layout/master "Posts index"
-    [:h1.text-center "Posts index page"]))
+  (layout/master "Check out all the Posts"
+    [:h1.text-center "Posts index page"]
+    (article-views/render-all (article-model/find-all))))
 
 (defn show-post [id]
   (layout/master (str "Viewing Post #" id)
