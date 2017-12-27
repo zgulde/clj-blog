@@ -48,6 +48,13 @@
 (defn limit [q n] (assoc q :limit n))
 (defn offset [q n] (assoc q :offset n))
 
+(defn search [q column-name search-term]
+  (-> q
+      (select column-name)
+      (where (if (vector? column-name) (first column-name) column-name)
+             :like (str "%" search-term "%"))))
+
+
 (defn- build-query-parts [{:keys [select from join where limit offset group-by order-by]}]
   (filter seq
           ["SELECT" (s/join ", " select)

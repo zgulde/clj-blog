@@ -77,6 +77,18 @@
     (let [q (offset {} 5)]
       (is (= 5 (:offset q)))))
 
+  (testing "(search)"
+    (let [q (-> (from :foo)
+                (search :col "asdf"))]
+      (is (= '("col") (:select q)))
+      (is (= '(("col" "like" "?"))) (:where q))
+      (is (= '("%asdf%") (:params q))))
+    (let [q (-> (from :table)
+                (search [:col :c] "qwer"))]
+      (is (= '("col c") (:select q)))
+      (is (= '(("col" "like" "?"))) (:where q))
+      (is (= '("%qwer%") (:params q)))))
+
   (testing "(->query)"
     ;;
     (let [parameter "a value"
