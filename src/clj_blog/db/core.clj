@@ -1,11 +1,13 @@
 (ns clj-blog.db.core
-  (:require [clojure.java.jdbc :as jdbc]
+  (:require [clj-blog.env :as env]
+            [clojure.java.jdbc :as jdbc]
             [defun.core :refer [defun]]
             [clojure.string :as s]))
 
-(def blog-db {:dbtype "mysql"
-              :dbname "blog_db"
-              :user "zach"
+(def blog-db {:dbname env/db-name
+              :user env/db-user
+              :pass env/db-pass
+              :dbtype "mysql"
               :useSSL false})
 
 (defn query [sql-parts & params]
