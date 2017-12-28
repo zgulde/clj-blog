@@ -6,13 +6,18 @@
 (def with-users
   (-> (db/from [:articles :a])
       (db/join [:users :u] :a.user_id :u.id)
-      (db/select :a.title :a.content :u.email)))
+      (db/select :a.title :a.content :u.email [:u.id :user_id])))
 
 (defn find-all []
   (db/run with-users))
 
 (defn fst []
   (db/fst with-users))
+
+(defn by-id [id]
+  (-> with-users
+      (db/where :a.id := id)
+      (db/fst)))
 
 (defn create [article]
   (:generated_key (first (jdbc/insert! db/blog-db :articles article))))
