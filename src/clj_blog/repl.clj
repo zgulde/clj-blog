@@ -1,5 +1,5 @@
 (ns clj-blog.repl
-  (:use clj-blog.handler
+  (:use clj-blog.server
         ring.server.standalone
         [ring.middleware file-info file]))
 

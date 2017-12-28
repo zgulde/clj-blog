@@ -12,9 +12,9 @@
                  [markdown-clj "1.0.1"]]
   :main clj-blog.core
   :plugins [[lein-ring "0.8.12"]]
-  :ring {:handler clj-blog.handler/app
-         :init clj-blog.handler/init
-         :destroy clj-blog.handler/destroy}
+  :ring {:handler clj-blog.server/app
+         :init clj-blog.server/init
+         :destroy clj-blog.server/destroy}
   :profiles
   {:uberjar {:aot :all}
    :production

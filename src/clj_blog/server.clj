@@ -1,4 +1,4 @@
-(ns clj-blog.handler
+(ns clj-blog.server
   (:require [compojure.core :refer [defroutes routes GET]]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.file-info :refer [wrap-file-info]]
