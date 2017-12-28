@@ -1,15 +1,11 @@
 (ns clj-blog.db.seeder
   (:require [clj-blog.models.user :as user]
             [clj-blog.models.article :as article]
+            [clj-blog.db.core :as db]
             [clojure.java.jdbc :as jdbc]))
 
-(def blog-db {:dbtype "mysql"
-              :dbname "blog_db"
-              :user "zach"
-              :useSSL false})
-
 (defn truncate-all []
-  (jdbc/db-do-commands blog-db
+  (jdbc/db-do-commands db/blog-db
     ["SET FOREIGN_KEY_CHECKS = 0"
      "TRUNCATE articles"
      "TRUNCATE users"

@@ -8,7 +8,7 @@
       (db/run)))
 
 (defn create [user]
-  (jdbc/insert! db/blog-db :users user))
+  (:generated_key (first (jdbc/insert! db/blog-db :users user))))
 
 (defn fst []
   (-> (db/from :users)
@@ -16,7 +16,7 @@
       (db/fst)))
 
 (defn seed []
-  (doseq [email ["zach@codeup.com" "ryan@codeup.com"
-                 "luis@codeup.com" "fernando@codeup.com"
-                 "justin@codeup.com"]]
+  (for [email ["zach@codeup.com" "ryan@codeup.com"
+               "luis@codeup.com" "fernando@codeup.com"
+               "justin@codeup.com"]]
     (create {:email email})))
