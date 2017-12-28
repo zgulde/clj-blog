@@ -113,11 +113,11 @@
       (is (= [sql] query)))
     ;;
     (let [q (-> (from :table)
-                (select :one)
-                (groupby :foo :bar)
-                (orderby :baz :pony))
+                (select [:foo :f] :bar :baz :pony [:quux :q])
+                (groupby :foo :bar :baz)
+                (orderby :baz :pony :quux))
           query (->query q)
-          sql "SELECT one FROM table GROUP BY foo, bar ORDER BY baz, pony"]
+          sql "SELECT foo f, bar, baz, pony, quux q FROM table GROUP BY foo, bar, baz ORDER BY baz, pony, quux"]
       (is (= [sql] query))))
 ;;
 )
