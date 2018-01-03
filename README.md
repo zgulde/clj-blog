@@ -12,6 +12,10 @@ to have leiningen pull in the dependencies for you, or just run one of the
 commands below and leiningen will figure out that it needs to go get the
 dependencies.
 
+Next run:
+
+    cp src/clj_blog/env.example.clj src/clj_blog/env.clj
+
 [1]: https://github.com/technomancy/leiningen
 
 ## Running
